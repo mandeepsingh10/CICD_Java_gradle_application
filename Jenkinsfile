@@ -49,7 +49,7 @@ pipeline{
         stage("Pushing Helm Charts to Nexus Repo"){
             steps{
                 script{
-                    dir{
+                    dir(kubernetes/){
                         withCredentials([string(credentialsId: 'nexus_docker_repo_pass', variable: 'nexus_docker_repo_pass_var')]) {
                                 sh '''
                                     helmversion=$(helm show chart myapp/ | grep version | awk '{print $2}')
