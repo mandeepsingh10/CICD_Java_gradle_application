@@ -52,9 +52,9 @@ pipeline{
                     dir{
                         withCredentials([string(credentialsId: 'nexus_docker_repo_pass', variable: 'nexus_docker_repo_pass_var')]) {
                                 sh '''
-                                    helmchartversion=$(helm show chart myapp/ | grep version | awk '{print $2}')
-                                    tar -czvf myapp-${helmchartversion}.tgz myapp/
-                                    curl -u admin:$nexus_docker_repo_pass_var http://52.66.172.21:8081/repository/helm-hosted/ --upload-file myapp-${helmchartversion}.tgz -v
+                                    helmversion=$(helm show chart myapp/ | grep version | awk '{print $2}')
+                                    tar -czvf myapp-${helmversion}.tgz myapp/
+                                    curl -u admin:$nexus_docker_repo_pass_var http://52.66.172.21:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v
                                 '''
                             }   
                         }
