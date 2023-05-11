@@ -24,12 +24,12 @@ pipeline{
             steps{
                 script{
                     withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_pass_var')]) {
-                            sh '''
-                            docker build -t 15.206.89.243:8083/myapp:${VERSION} .
-                            docker login -u admin -p $nexus_pass_var 15.206.89.243:8083
-                            docker push 15.206.89.243:8083/myapp:${VERSION}
-                            docker rmi 15.206.89.243:8083/myapp:${VERSION}
-                            '''
+                        sh '''
+                        docker build -t 15.206.89.243:8083/myapp:${VERSION} .
+                        docker login -u admin -p $nexus_pass_var 15.206.89.243:8083
+                        docker push 15.206.89.243:8083/myapp:${VERSION}
+                        docker rmi 15.206.89.243:8083/myapp:${VERSION}
+                        '''
                     }
                 }
             }
@@ -48,8 +48,21 @@ pipeline{
                 }
             }
         }
-        
-        
+        stage("Pushing Helm Charts to Nexus Repo"){
+            steps{
+                script{
+                    dir('kubernetes/'){
+                        withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_pass_var')]) {
+                            sh '''
+                            helmversion=$(helm show chart myapp/ | grep version | awk '{print $2}')
+                            tar -czvf myapp-${helmversion}.tgz myapp/
+                            curl -u admin:$nexus_docker_repo_pass_var http://15.206.89.243:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v
+                            '''
+                        }   
+                    }
+                }   
+            }   
+        }    
     }
     post {
 	    always {
