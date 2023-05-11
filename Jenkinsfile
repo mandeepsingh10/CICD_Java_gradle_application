@@ -25,10 +25,10 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_pass_var')]) {
                         sh '''
-                        docker build -t 15.206.89.243:8083/myapp:${VERSION} .
+                        docker build -t 15.206.89.243:8083/springapp:${VERSION} .
                         docker login -u admin -p $nexus_pass_var 15.206.89.243:8083
-                        docker push 15.206.89.243:8083/myapp:${VERSION}
-                        docker rmi 15.206.89.243:8083/myapp:${VERSION}
+                        docker push 15.206.89.243:8083/springapp:${VERSION}
+                        docker rmi 15.206.89.243:8083/springapp:${VERSION}
                         '''
                     }
                 }
@@ -68,7 +68,7 @@ pipeline{
                 script{
                     dir ("kubernetes/"){  
 				        sh 'helm list'
-				        sh 'helm upgrade --install --set image.repository="15.206.89.243:8083/myapp" --set image.tag="${VERSION}" myjavaapp myapp/ ' 
+				        sh 'helm upgrade --install --set image.repository="15.206.89.243:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/ ' 
 			        }
                 }
             }
