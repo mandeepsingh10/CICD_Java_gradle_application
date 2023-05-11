@@ -38,9 +38,12 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
-                        withEnv(['DATREE_TOKEN=9dd6ae95-bde7-4927-96ac-f6ebdf9f7a6b']) {
-                            sh 'sudo helm datree test myapp/'
-                        }
+                        withCredentials([string(credentialsId: 'datree-token', variable: 'datree-token-var')]) {
+                            sh '''
+                            sudo helm datree config set token $datree-token-var
+                            sudo helm datree test myapp/
+                            '''
+                        }    
                     }
                 }
             }
