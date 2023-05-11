@@ -63,12 +63,31 @@ pipeline{
                 }   
             }   
         }
+        stage(Deployment Approval){
+            steps{
+                scripts{
+                    timeout(10){
+                          mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Goto : ${env.BUILD_URL} and approve/reject the deployment", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "CICD APPROVAL REQUEST: Project name -> ${env.JOB_NAME}", to: "mandeepsingh1018@gmail.com";  
+                          slackSend channel: '#jenkins-bot', message: "*CICD Approval Request* \nProject: *${env.JOB_NAME}* \n Build Number: ${env.BUILD_NUMBER} \n Status: *${currentBuild.result}* \n  Go to ${env.BUILD_URL} to approve or reject the deployment request."  
+                          input(id: "DeployGate", message: "Approval required to proceed, deploy ${env.JOB_NAME}?", ok: 'Deploy')
+                    }
+                }
+            }
+        }
         stage('Deploying application on k8s-cluster') {
             steps {
                 script{
                     dir ("kubernetes/"){  
-				        sh 'helm list'
 				        sh 'helm upgrade --install --set image.repository="15.206.89.243:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/ ' 
+			        }   
+                }
+            }
+        }    
+        stage('Verifying application deployment on k8s-cluster') {
+            steps {
+                script{
+                    dir ("kubernetes/"){  
+				        sh 'kubectl run curl --image=curlimages/curl -i --rm --restart=Never -- curl myjavaapp-myapp:8080 ' 
 			        }   
                 }
             }
