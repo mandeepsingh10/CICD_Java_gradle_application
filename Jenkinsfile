@@ -63,7 +63,7 @@ pipeline{
                 }   
             }   
         }
-        stage(Deployment Approval){
+        stage('Deployment Approval'){
             steps{
                 scripts{
                     timeout(10){
