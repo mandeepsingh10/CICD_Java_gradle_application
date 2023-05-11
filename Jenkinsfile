@@ -40,7 +40,7 @@ pipeline{
                     dir('kubernetes/') {
                         withCredentials([string(credentialsId: 'datree-token', variable: 'datree_token_var')]) {
                             sh '''
-                            sudo helm datree config set token $datree-token-var
+                            sudo helm datree config set token $datree_token_var
                             sudo helm datree test myapp/
                             '''
                         }    
