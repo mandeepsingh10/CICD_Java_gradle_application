@@ -38,7 +38,7 @@ pipeline{
             steps{
                 script{
                     dir('kubernetes/') {
-                        withEnv(['DATREE_TOKEN=ff434798-2f4e-4adf-a167-41b43740c677']) {
+                        withEnv(['DATREE_TOKEN=9dd6ae95-bde7-4927-96ac-f6ebdf9f7a6b']) {
                             sh 'sudo helm datree test myapp/'
                         }
                     }
