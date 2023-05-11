@@ -30,10 +30,22 @@ pipeline{
                             docker push 15.206.89.243:8083/myapp:${VERSION}
                             docker rmi 15.206.89.243:8083/myapp:${VERSION}
                             '''
-                }
+                    }
                 }
             }
         }
+        stage('Identifying the misconfiguration in HELM charts using datree'){
+            steps{
+                script{
+                    dir('kubernetes/') {
+                        withEnv(['DATREE_TOKEN=ff434798-2f4e-4adf-a167-41b43740c677']) {
+                            sh 'sudo helm datree test myapp/'
+                        }
+                    }
+                }
+            }
+        }
+        
         
     }
     post {
