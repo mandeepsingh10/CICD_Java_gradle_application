@@ -1,13 +1,225 @@
 <!DOCTYPE html>
-<html>
-	<head>
-	<title> web app </title>
-	</head>
-	<body>
-	 <h1>Sample Web application has been deployed </h1>
-	</body>
+<html lang="en">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandeep Singh - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Certifications</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-main">
+            <h1>Hi there!</h1>
+        </div>
+        <div class="header-text">
+            <p>I'm</p>
+            <h1>MANDEEP</h1>
+            <h3>Seeking opportunities in Site Reliability/DevOps Engineering roles</h3>
+        </div>
+    </div>
+</div>
+<!-- -----------about---------- -->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/user.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>Mandeep Singh is an adept System Operations Engineer with vast experience in managing large-scale server infrastructure. He specializes in Linux and Windows administration, automation, monitoring, and CI/CD pipeline implementation. His successful record of reducing build times, optimizing hardware utilization, and enhancing team productivity makes him a perfect fit for Site Reliability Engineering/DevOps Engineering positions. </p>
 
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Collaboration and Planning</span><br>Jira, Slack</li>
+                        <li><span>Source and Version Control</span><br>Github, Gitlab</li>
+                        <li><span>CI/CD</span><br>Jenkins, Argo CD</li>
+                        <li><span>Configuration Management </span><br>Ansible, Puppet</li>
+                        <li><span>Infrastructure As Code</span><br>Terraform, Cloudformation</li>
+                        <li><span>Application and Infrastructure Monitoring</span><br>Nagios, Prometheus, Grafana</li>
+                        <li><span>Containerization</span><br>Docker, Kubernetes</li>
+                        <li><span>Cloud Providers</span><br>AWS</li>
+
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>January 2020 - Current</span><br>System Operations Engineer II at <a href="https://www.media.net/" style="color: #ff004f"  target="_blank">Media.net</a></li>
+                        <li><span>January 2019 - December 2019</span><br>Associate Systems Administrator at <a href="https://www.qad.com/" style="color: #ff004f"  target="_blank">QAD INDIA</a></li>
+                        <li><span>July 2018 - December 2018</span><br>Cloud Operations Intern at <a href="https://www.qad.com/" style="color: #ff004f"  target="_blank">QAD INDIA</a></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2013 - 2017</span><br>B.E Computer Engineering - University Of Mumbai</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------services---------------- -->
+<div id="services">
+    <div class="container">
+        <h1 class="sub-title">Certifications</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-brands fa-aws fa-fade"></i>
+                <h2>AWS Certified Solutions Architect – Associate</h2>
+                <p></p>
+                <a href="https://www.credly.com/badges/c578d3ca-1c8c-4eb5-a054-532079ba0888/" target="_blank">Learn more</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-gear fa-spin"></i>
+                <h2>HashiCorp Certified: Terraform Associate (002)</h2>
+                <p></p>
+                <a href="https://www.credly.com/badges/757349dd-8110-4c53-a604-6b7c9872168f/" target="_blank">Learn more</a>
+            </div>
+            <div>
+                <i class="fa fa-server fa-bounce"></i>
+                <h2>Red Hat Certified Engineer (RHCE)</h2>
+                <p></p>
+                <a href="https://rhtapps.redhat.com/verify?certId=180-022-626" target="_blank">Learn more</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------portfolio------------ -->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">Projects</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/work-1.png">
+                <div class="layer">
+                    <h3>DevOps Home Lab</h3>
+                    <p>Getting started with a DevOps home lab is great. You can spin up, mess around and use it as playground for learning. Also while setting up a lab on your own you will encounter amy challenges and issues which willhelp you understand how all these tools are connected together. No need to have physical servers or cloud account which might charge extra money :). Here I am using my PC to build a small scale lab with all the mainstream DevOps tools.</p>
+                    <a href="https://github.com/mandeepsingh10/devops-vagrant-lab" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work-2.png">
+                <div class="layer">
+                    <h3>Voting App</h3>
+                    <p>This is based on the original example-voting-app repository from the docker-examples GitHub page.</p> 
+                    <p>It is modified it to work on the Kubernetes cluster.</p>
+                    <a href="https://github.com/mandeepsingh10/voting-app-k8s" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="images/work-3.png">
+                <div class="layer">
+                    <h3>AWS automation using Terraform.</h3>
+                    <p>This repository includes basic scripts and modules to create EC2 Instances, security groups, VPC etc.</p>
+                    <a href="https://github.com/mandeepsingh10/terraform" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="https://www.linkedin.com/in/mandeepsingh10/" target="_blank" class="btn">See more</a>
+    </div>
+</div>
+<!-- ----------contact------------- -->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact me</h1>
+                <p><i class="fas fa-envelope"></i> mandeepsingh1018@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91-9819387857</p>
+                <div class="social-icons">
+                    <a href="https://github.com/mandeepsingh10" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href=""><i class="fab fa-twitter-square" target="_blank"></i></a>
+                    <a href="https://www.instagram.com/mandeepsingh10/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/mandeepsingh10/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <a href="assets/mandeepsingh-resume.pdf" target="_blank" download class="btn btn2">Download Resume</a>
+            </div>
+            <div class="contact-right">
+                <form name="myForm">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="Name" placeholder="Name" required>
+                    <input type="email" name="Email" placeholder="Email Address" required>
+                    <input type="text" name="_subject" placeholder="Subject">
+                    <textarea name="Message" rows="6" placeholder="Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © Mandeep Singh</p>
+    </div>
+</div>
+
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+
+    var sidemeu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemeu.style.right = "0";
+    }
+    function closemenu(){
+        sidemeu.style.right = "-200px";
+    }
+
+</script>
+<script>
+    const scriptURL = 'https://formsubmit.co/mandeepsingh1018@gmail.com' // add your own app script link here
+    const form = document.forms['myForm']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
 </html>
-
-
-
