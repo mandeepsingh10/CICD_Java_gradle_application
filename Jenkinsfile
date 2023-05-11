@@ -40,7 +40,12 @@ pipeline{
 	    always {
 	        mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "${currentBuild.result} CI: Project name -> ${env.JOB_NAME}", to: "mandeepsingh1018@gmail.com";
 		}
-
+    post {
+        always {
+            slackSend channel: 'jenkins-bot', teamDomain: 'devops-prep', tokenCredentialId: 'slack-token'
+            slackSend "Project: ${env.JOB_NAME} Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+    }
+}
 }
 
 }
