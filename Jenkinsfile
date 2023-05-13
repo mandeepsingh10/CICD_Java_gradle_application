@@ -2,6 +2,8 @@ pipeline{
     agent any 
     environment{
         VERSION = "${env.BUILD_ID}"
+        DOCKER_HOSTED_REPO_EP = "IP:PORT of docker-hosted repository"
+        HELM_HOSTED_REPO_EP = "IP:PORT of helm-hosted repository"
     }
     stages{
         stage("Sonar Quality Check"){
